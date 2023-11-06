@@ -13,43 +13,44 @@ pub struct State {
     pub parent: Option<Box<State>>,
 }
 
-impl State {
-    pub fn is_finished(&self) -> bool {
-        self.m_left == 0 && self.c_left == 0
-    }
-    pub fn is_valid(&self) -> bool {
-        self.m_left >= 0
-            && self.c_left >= 0
-            && self.m_right >= 0
-            && self.c_right >= 0
-            && (self.m_right == 0 || self.m_right >= self.c_right)
-            && (self.m_left == 0 || self.m_left >= self.c_left)
-    }
-    pub fn print(&self) {
-        match self.boat_pos {
-            Side::Left => {
-                println!(
-                    "M: {} C: {} | Boat: Left | M: {} C: {}",
-                    self.m_left, self.c_left, self.m_right, self.c_right
-                );
-            }
-            Side::Right => {
-                println!(
-                    "M: {} C: {} | Boat: Right | M: {} C: {}",
-                    self.m_left, self.c_left, self.m_right, self.c_right
-                );
-            }
+pub fn is_finished(state: &State) -> bool {
+    state.m_left == 0 && state.c_left == 0
+}
+
+pub fn is_valid(state: &State) -> bool {
+    state.m_left >= 0
+        && state.c_left >= 0
+        && state.m_right >= 0
+        && state.c_right >= 0
+        && (state.m_right == 0 || state.m_right >= state.c_right)
+        && (state.m_left == 0 || state.m_left >= state.c_left)
+}
+
+pub fn print(state: &State) {
+    match state.boat_pos {
+        Side::Left => {
+            println!(
+                "M: {} C: {} | Boat: Left | M: {} C: {}",
+                state.m_left, state.c_left, state.m_right, state.c_right
+            );
+        }
+        Side::Right => {
+            println!(
+                "M: {} C: {} | Boat: Right | M: {} C: {}",
+                state.m_left, state.c_left, state.m_right, state.c_right
+            );
         }
     }
-    pub fn path(&self) {
-        match self.parent {
-            Some(ref parent) => {
-                parent.path();
-                self.print();
-            }
-            None => {
-                self.print();
-            }
+}
+
+pub fn path(state: &State) {
+    match state.parent {
+        Some(ref parent) => {
+            path(parent);
+            print(state);
+        }
+        None => {
+            print(state);
         }
     }
 }

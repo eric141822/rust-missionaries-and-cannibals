@@ -1,6 +1,3 @@
-use rust_m_and_c::Side;
-use rust_m_and_c::State;
-
 fn main() {
     /* Get initial m_left and c_left from input */
     println!("Input number of missionaries and cannibals on the left side of the river: <missionaries> <cannibals>");
@@ -10,12 +7,12 @@ fn main() {
     let m_left: i32 = iter.next().unwrap().parse().unwrap();
     let c_left: i32 = iter.next().unwrap().parse().unwrap();
 
-    let s = State {
+    let s = rust_m_and_c::State {
         m_left,
         c_left,
         m_right: 0,
         c_right: 0,
-        boat_pos: Side::Left,
+        boat_pos: rust_m_and_c::Side::Left,
         parent: None,
     };
     /* Time the runtime */
@@ -23,7 +20,7 @@ fn main() {
     let result = rust_m_and_c::solve(s);
     match result {
         Some(state) => {
-            state.path();
+            rust_m_and_c::path(&state);
         }
         None => {
             println!("No solution found!");

@@ -2,11 +2,10 @@ mod state;
 
 use std::collections::VecDeque;
 
-pub use state::Side;
-pub use state::State;
+pub use state::*;
 
 pub fn check_and_add(v: &mut Vec<State>, s: State) {
-    if s.is_valid() {
+    if is_valid(&s) {
         v.push(s);
     }
 }
@@ -138,7 +137,7 @@ pub fn solve(s: State) -> Option<State> {
     v.push_back(s);
     while !v.is_empty() {
         let s = v.pop_front().unwrap();
-        if s.is_finished() {
+        if is_finished(&s) {
             return Some(s);
         }
         let new_states = generate_state_vec(&s);
