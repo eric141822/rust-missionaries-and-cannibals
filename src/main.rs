@@ -1,10 +1,18 @@
-use rust_m_and_c::State;
 use rust_m_and_c::Side;
+use rust_m_and_c::State;
 
 fn main() {
+    /* Get initial m_left and c_left from input */
+    println!("Input number of missionaries and cannibals on the left side of the river: <missionaries> <cannibals>");
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input).unwrap();
+    let mut iter = input.split_whitespace();
+    let m_left: i32 = iter.next().unwrap().parse().unwrap();
+    let c_left: i32 = iter.next().unwrap().parse().unwrap();
+
     let s = State {
-        m_left: 3,
-        c_left: 3,
+        m_left,
+        c_left,
         m_right: 0,
         c_right: 0,
         boat_pos: Side::Left,
