@@ -1,15 +1,16 @@
-#[derive(PartialEq)]
+#[derive(PartialEq, Clone)]
 pub enum Side {
     Left,
     Right,
 }
+#[derive(Clone)]
 pub struct State {
-    m_right: i32,
-    m_left: i32,
-    c_right: i32,
-    c_left: i32,
-    boat_pos: Side,
-    parent: Option<Box<State>>,
+    pub m_right: i32,
+    pub m_left: i32,
+    pub c_right: i32,
+    pub c_left: i32,
+    pub boat_pos: Side,
+    pub parent: Option<Box<State>>,
 }
 
 impl State {
