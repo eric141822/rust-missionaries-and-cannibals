@@ -18,6 +18,7 @@ fn main() {
     /* Time the runtime */
     let now = std::time::Instant::now();
     let result = rust_m_and_c::solve(s);
+    println!("Time elapsed: {}us", now.elapsed().as_micros());
     match result {
         Some(state) => {
             rust_m_and_c::path(&state);
@@ -26,5 +27,4 @@ fn main() {
             println!("No solution found!");
         }
     }
-    println!("Time elapsed: {}us", now.elapsed().as_micros());
 }
