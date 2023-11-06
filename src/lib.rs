@@ -4,13 +4,13 @@ use std::collections::VecDeque;
 
 pub use state::*;
 
-pub fn check_and_add(v: &mut Vec<State>, s: State) {
+fn check_and_add(v: &mut Vec<State>, s: State) {
     if is_valid(&s) {
         v.push(s);
     }
 }
 
-pub fn contains(v: &Vec<State>, s: &State) -> bool {
+fn contains(v: &Vec<State>, s: &State) -> bool {
     for i in v {
         if i == s {
             return true;
@@ -19,7 +19,7 @@ pub fn contains(v: &Vec<State>, s: &State) -> bool {
     false
 }
 
-pub fn generate_state_vec(s: &State) -> Vec<State> {
+fn generate_state_vec(s: &State) -> Vec<State> {
     let mut v: Vec<State> = Vec::new();
     match s.boat_pos {
         Side::Left => {

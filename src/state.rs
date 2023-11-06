@@ -26,7 +26,7 @@ pub fn is_valid(state: &State) -> bool {
         && (state.m_left == 0 || state.m_left >= state.c_left)
 }
 
-pub fn print(state: &State) {
+fn print(state: &State) {
     match state.boat_pos {
         Side::Left => {
             println!(
